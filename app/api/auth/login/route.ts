@@ -19,8 +19,8 @@ export async function GET(request: Request) {
     return new NextResponse("OAuth not configured", { status: 500 });
   }
 
-  const url = new URL(request.url);
-  const redirectUri = `${url.origin}/api/auth/callback`;
+  const origin = process.env.APP_URL || new URL(request.url).origin;
+  const redirectUri = `${origin}/api/auth/callback`;
   const state = randomState();
   const signedState = await sign(state, sessionSecret);
 

@@ -22,45 +22,47 @@ export async function GET(request: Request) {
   }
 
   const url = new URL(request.url);
+  const origin = process.env.APP_URL || url.origin;
   const code = url.searchParams.get("code");
   const state = url.searchParams.get("state");
   if (!code || !state) {
-    return NextResponse.redirect(new URL("/login?error=missing_params", url));
+    return NextResponse.redirect(new URL("/login?error=missing_params", origin));
   }
 
   const jar = await cookies();
   const signedState = jar.get(STATE_COOKIE)?.value;
   jar.delete(STATE_COOKIE);
   if (!signedState) {
-    return NextResponse.redirect(new URL("/login?error=missing_state", url));
+    return NextResponse.redirect(new URL("/login?error=missing_state", origin));
   }
   const verified = await verify(signedState, sessionSecret);
   if (verified !== state) {
-    return NextResponse.redirect(new URL("/login?error=bad_state", url));
+    return NextResponse.redirect(new URL("/login?error=bad_state", origin));
   }
 
   let token: string;
   let user: Awaited<ReturnType<typeof fetchGithubUser>>;
   try {
+    const origin = process.env.APP_URL || url.origin;
     token = await exchangeCodeForToken({
       clientId,
       clientSecret,
       code,
-      redirectUri: `${url.origin}/api/auth/callback`,
+      redirectUri: `${origin}/api/auth/callback`,
     });
     user = await fetchGithubUser(token);
   } catch {
-    return NextResponse.redirect(new URL("/login?error=oauth_failed", url));
+    return NextResponse.redirect(new URL("/login?error=oauth_failed", origin));
   }
 
   // Org membership gate.
   try {
     const isMember = await isOrgMember(token, org);
     if (!isMember) {
-      return NextResponse.redirect(new URL("/login?error=not_authorized", url));
+      return NextResponse.redirect(new URL("/login?error=not_authorized", origin));
     }
   } catch {
-    return NextResponse.redirect(new URL("/login?error=oauth_failed", url));
+    return NextResponse.redirect(new URL("/login?error=oauth_failed", origin));
   }
 
   await createSession({
@@ -70,5 +72,6 @@ export async function GET(request: Request) {
     createdAt: Math.floor(Date.now() / 1000),
   });
 
-  return NextResponse.redirect(new URL("/overview", url));
+  const origin = process.env.APP_URL || url.origin;
+  return NextResponse.redirect(new URL("/overview", origin));
 }
