@@ -72,6 +72,5 @@ export async function GET(request: Request) {
     createdAt: Math.floor(Date.now() / 1000),
   });
 
-  const origin = process.env.APP_URL || url.origin;
   return NextResponse.redirect(new URL("/overview", origin));
 }
