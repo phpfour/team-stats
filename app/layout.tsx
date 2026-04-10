@@ -20,7 +20,10 @@ const mono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "klasio · github stats",
+  title: {
+    default: "Team Stats",
+    template: "%s · Team Stats",
+  },
   description: "Engineering analytics for the klasio organization.",
 };
 
