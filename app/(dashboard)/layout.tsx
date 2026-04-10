@@ -18,10 +18,7 @@ export default async function DashboardLayout({
         <div className="mx-auto max-w-[1200px] px-8 h-16 flex items-center justify-between">
           <Link href="/overview" className="flex items-baseline gap-3 group">
             <span className="font-display text-2xl text-ink leading-none italic">
-              klasio
-            </span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-mute group-hover:text-accent transition-colors">
-              github stats
+              Team Stats
             </span>
           </Link>
           <div className="flex items-center gap-6 font-mono text-[11px] uppercase tracking-wider">
@@ -40,8 +37,8 @@ export default async function DashboardLayout({
       <main className="flex-1">{children}</main>
       <footer className="border-t border-rule">
         <div className="mx-auto max-w-[1200px] px-8 py-5 flex items-center justify-between font-mono text-[10px] uppercase tracking-wider text-ink-faint">
-          <span>klasio · engineering analytics</span>
-          <span>data via github · synced every 15m</span>
+          <span>team stats · engineering analytics</span>
+          <span>synced every 15 minutes</span>
         </div>
       </footer>
     </div>

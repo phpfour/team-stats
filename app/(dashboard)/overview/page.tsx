@@ -70,7 +70,7 @@ export default async function OverviewPage({ searchParams }: Props) {
           </h1>
           <p className="mt-4 font-sans text-sm text-ink-soft max-w-xl">
             A read on shipping velocity, review health, and contributor focus
-            across all klasio repositories for the {RANGE_LABEL[granularity]}.
+            across all repositories for the {RANGE_LABEL[granularity]}.
           </p>
         </div>
         <div className="flex flex-col items-end gap-3">

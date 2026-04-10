@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     default: "Team Stats",
     template: "%s · Team Stats",
   },
-  description: "Engineering analytics for the klasio organization.",
+  description: "Engineering analytics for your team.",
 };
 
 export default function RootLayout({

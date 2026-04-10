@@ -78,7 +78,7 @@ export default async function MemberPage({ params, searchParams }: Props) {
             </h1>
             <p className="mt-4 font-sans text-sm text-ink-soft max-w-xl">
               Individual contribution snapshot for the{" "}
-              {RANGE_LABEL[granularity]}, scoped to all klasio repositories.
+              {RANGE_LABEL[granularity]}, scoped to all repositories.
             </p>
           </div>
           <RangeSelector />
@@ -166,7 +166,7 @@ export default async function MemberPage({ params, searchParams }: Props) {
           <div className="flex items-baseline justify-between mb-6">
             <RailLabel>Activity timeline</RailLabel>
             <span className="font-mono text-[10px] uppercase tracking-wider text-ink-faint">
-              Newest first · click ↗ to open on github
+              Newest first · click ↗ to open
             </span>
           </div>
           <ActivityTimeline

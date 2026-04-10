@@ -3,11 +3,11 @@ type Props = {
 };
 
 const ERROR_MESSAGES: Record<string, string> = {
-  not_authorized: "Your GitHub account is not on the allowlist for this dashboard.",
+  not_authorized: "Your account is not authorized to access this dashboard.",
   bad_state: "Login session expired or was tampered with. Please try again.",
   missing_state: "Login session expired. Please try again.",
   missing_params: "OAuth callback was missing required parameters.",
-  oauth_failed: "GitHub authorization failed. Please try again.",
+  oauth_failed: "Authorization failed. Please try again.",
 };
 
 export default async function LoginPage({ searchParams }: Props) {
@@ -19,7 +19,7 @@ export default async function LoginPage({ searchParams }: Props) {
       {/* Editorial column */}
       <aside className="hidden lg:flex lg:col-span-3 border-r border-rule bg-paper-soft/40 p-16 flex-col justify-between">
         <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
-          klasio · vol. I
+          Team Stats
         </div>
 
         <div className="max-w-xl">
@@ -49,7 +49,7 @@ export default async function LoginPage({ searchParams }: Props) {
             Sign in to continue.
           </h2>
           <p className="mt-3 font-sans text-sm text-ink-soft">
-            Use the GitHub account associated with your klasio membership.
+            Sign in with your organization account to continue.
           </p>
 
           {message ? (
@@ -63,7 +63,7 @@ export default async function LoginPage({ searchParams }: Props) {
             className="mt-8 group inline-flex w-full items-center justify-between border border-ink bg-ink px-5 py-4 text-paper transition-colors hover:bg-accent hover:border-accent"
           >
             <span className="font-mono text-[11px] uppercase tracking-[0.18em]">
-              Continue with GitHub
+              Sign in
             </span>
             <span className="font-display text-xl italic transition-transform group-hover:translate-x-1">
               →
@@ -71,7 +71,7 @@ export default async function LoginPage({ searchParams }: Props) {
           </a>
 
           <div className="mt-10 font-mono text-[10px] uppercase tracking-wider text-ink-faint">
-            klasio · github stats · {new Date().getFullYear()}
+            Team Stats · {new Date().getFullYear()}
           </div>
         </div>
       </section>
